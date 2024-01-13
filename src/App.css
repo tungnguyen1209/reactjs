@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.App .sb-sidenav-menu-heading {
+  text-align: left;
+}
+
+.App .card-header {
+  text-align: left;
+}
+
+.card-header svg {
+  box-sizing: content-box;
+  display: var(--fa-display,inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
