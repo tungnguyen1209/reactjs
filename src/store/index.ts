@@ -2,9 +2,10 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 
 import { accountReducer } from './account/reducers';
-import { setAuthToken } from '../helpers';
+import { setBearerToken } from '../helpers';
 import storage from 'redux-persist/lib/storage';
 import thunkMiddleware from 'redux-thunk';
+import {customerReducer} from "./customer/reducers";
 
 const persistConfig = {
   key: 'root',
@@ -13,7 +14,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  account: accountReducer
+  account: accountReducer,
+  customer: customerReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -46,7 +48,7 @@ store.subscribe(() => {
   if (previousState.account.token !== currentState.account.token) {
     const token = currentState.account.token;
     if (token) {
-      setAuthToken(token);
+      setBearerToken(token);
     }
   }
 });

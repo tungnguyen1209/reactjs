@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
+import {logout} from '../../../store/account/actions';
 
 function TopBar() {
     const [isToggle, setIsToggle] = useState(false);
+    const dispatch = useDispatch();
 
     return (
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -26,7 +29,7 @@ function TopBar() {
                         <li>
                             <hr className="dropdown-divider"/>
                         </li>
-                        <li><a className="dropdown-item" href="#!">Logout</a></li>
+                        <li onClick={() => dispatch(logout())}><a className="dropdown-item" href="#!">Logout</a></li>
                     </ul>
                 </li>
             </ul>

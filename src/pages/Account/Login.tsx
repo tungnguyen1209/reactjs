@@ -73,7 +73,9 @@ export const Login = () => {
                                 <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                                     <a className="small" href="#">Forgot Password?</a>
                                     <button className='btn btn-primary'>
-                                        Login
+                                        {loading ? (
+                                            <span className='spinner-border spinner-border-sm mr-1'></span>
+                                        ) : "Login"}
                                     </button>
                                 </div>
                             </form>

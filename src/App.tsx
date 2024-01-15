@@ -5,6 +5,7 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {Login} from './pages/Account/Login';
 import {Admin} from './pages/Admin/Admin';
 import {AccountRoute, PrivateRoute} from './components';
+import Index from "./pages/Admin/Customer/Index";
 
 function App() {
     return (
@@ -26,6 +27,10 @@ function App() {
                                 <Admin/>
                             </PrivateRoute>
                         }
+                    />
+                    <Route
+                        path="/customers"
+                        element={<PrivateRoute><Index/></PrivateRoute>}
                     />
                 </Routes>
             </BrowserRouter>
