@@ -13,8 +13,6 @@ export const Login = () => {
     const [submitted, setSubmitted] = useState(false);
     const loading = useSelector<AppState>((state) => state.account.loading);
     const token = useSelector<AppState>((state) => state.account.token);
-    const account = useSelector<AppState>((state) => state.account);
-    console.log(account);
     const {email, password} = inputs;
     const dispatch = useDispatch();
     useEffect(() => {
