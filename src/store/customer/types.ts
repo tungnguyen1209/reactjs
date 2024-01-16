@@ -4,7 +4,7 @@ export const LOAD_CUSTOMERS_SUCCESS = 'LOAD_CUSTOMERS_SUCCESS';
 export const LOAD_CUSTOMERS_FAILURE = 'LOAD_CUSTOMERS_FAILURE';
 
 export interface ICustomer {
-    _id: string;
+    id: string;
     name: string;
     email: string;
     phone: string

@@ -15,10 +15,14 @@ export const getCustomers = (curPage: number, pageSize: number) => {
 
         try {
             const response = await customerService.getCustomers(curPage, pageSize);
-            console.log(response);
             dispatch({
                 type: LOAD_CUSTOMERS_SUCCESS,
-                payload: response,
+                payload: {
+                    total: response.data.total,
+                    page: response.data.curPage,
+                    pageSize: response.data.pageSize,
+                    items: response.data.items
+                },
             });
         } catch (error: any) {
             dispatch({

@@ -1,6 +1,42 @@
-import React from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "../../../store";
+import {getCustomers} from "../../../store/customer/actions";
+import {Pagination} from "../../../components/Pagination";
+import {ICustomer} from "../../../store/customer/types";
 
 function Dashboard() {
+    const [curPage, setCurPage] = useState(1);
+    const [pageSize, setPageSize] = useState(20);
+    const customers = useSelector<AppState, ICustomer[]>((state) => state.customer.items);
+    const totalItems = useSelector<AppState, number>((state) => state.customer.total);
+    const loading = useSelector<AppState, boolean>((state) => state.customer.loading);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getCustomers(curPage, pageSize));
+    }, [dispatch, curPage, pageSize]);
+    const pageSizeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        const {value} = e.target;
+        setPageSize(parseInt(value));
+        dispatch(getCustomers(curPage, pageSize));
+    };
+
+    const curPageChange = (pageNumber: number) => {
+        setCurPage(pageNumber);
+        dispatch(getCustomers(curPage, pageSize));
+    };
+
+    const userElements: JSX.Element[] = customers.map((customer) => {
+        return (
+            <tr data-index={customer.id}>
+                <td>{customer.name}</td>
+                <td>{customer.email}</td>
+                <td>{customer.phone}</td>
+            </tr>
+        );
+    });
+
+
     return (
         <div className="container-fluid px-4">
             <h1 className="mt-4">Dashboard</h1>
@@ -84,12 +120,10 @@ function Dashboard() {
                         <div className="datatable-top">
                             <div className="datatable-dropdown">
                                 <label>
-                                    <select className="datatable-selector">
-                                    <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
+                                    <select name="pageSize" className="datatable-selector" onChange={pageSizeChange}>
                                         <option value="20">20</option>
-                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
                                     </select> entries per page
                                 </label>
                             </div>
@@ -99,7 +133,7 @@ function Dashboard() {
                             </div>
                         </div>
                         <div className="datatable-container">
-                            <table id="datatablesSimple" className="datatable-table">
+                            {!loading && (<table id="datatablesSimple" className="datatable-table">
                                 <thead>
                                 <tr>
                                     <th data-sortable="true">
@@ -108,140 +142,20 @@ function Dashboard() {
                                     </th>
                                     <th data-sortable="true">
                                         <a href="#"
-                                           className="datatable-sorter">Position</a>
+                                           className="datatable-sorter">Email</a>
                                     </th>
                                     <th data-sortable="true">
                                         <a href="#"
-                                           className="datatable-sorter">Office</a>
-                                    </th>
-                                    <th data-sortable="true">
-                                        <a href="#"
-                                           className="datatable-sorter">Age</a>
-                                    </th>
-                                    <th data-sortable="true">
-                                        <a href="#"
-                                           className="datatable-sorter">Start
-                                            date</a>
-                                    </th>
-                                    <th data-sortable="true">
-                                        <a href="#"
-                                           className="datatable-sorter">Salary</a>
+                                           className="datatable-sorter">Phone</a>
                                     </th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr data-index="0">
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                <tr data-index="1">
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                    <td>2011/07/25</td>
-                                    <td>$170,750</td>
-                                </tr>
-                                <tr data-index="2">
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>$86,000</td>
-                                </tr>
-                                <tr data-index="3">
-                                    <td>Cedric Kelly</td>
-                                    <td>Senior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2012/03/29</td>
-                                    <td>$433,060</td>
-                                </tr>
-                                <tr data-index="4">
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>$162,700</td>
-                                </tr>
-                                <tr data-index="5">
-                                    <td>Brielle Williamson</td>
-                                    <td>Integration Specialist</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2012/12/02</td>
-                                    <td>$372,000</td>
-                                </tr>
-                                <tr data-index="6">
-                                    <td>Herrod Chandler</td>
-                                    <td>Sales Assistant</td>
-                                    <td>San Francisco</td>
-                                    <td>59</td>
-                                    <td>2012/08/06</td>
-                                    <td>$137,500</td>
-                                </tr>
-                                <tr data-index="7">
-                                    <td>Rhona Davidson</td>
-                                    <td>Integration Specialist</td>
-                                    <td>Tokyo</td>
-                                    <td>55</td>
-                                    <td>2010/10/14</td>
-                                    <td>$327,900</td>
-                                </tr>
-                                <tr data-index="8">
-                                    <td>Colleen Hurst</td>
-                                    <td>Javascript Developer</td>
-                                    <td>San Francisco</td>
-                                    <td>39</td>
-                                    <td>2009/09/15</td>
-                                    <td>$205,500</td>
-                                </tr>
-                                <tr data-index="9">
-                                    <td>Sonya Frost</td>
-                                    <td>Software Engineer</td>
-                                    <td>Edinburgh</td>
-                                    <td>23</td>
-                                    <td>2008/12/13</td>
-                                    <td>$103,600</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                <tbody>{userElements}</tbody>
+                            </table>)}
                         </div>
                         <div className="datatable-bottom">
-                            <div className="datatable-info">Showing 1 to 10 of 57 entries</div>
-                            <nav className="datatable-pagination">
-                                <ul className="datatable-pagination-list">
-                                    <li className="datatable-pagination-list-item datatable-hidden datatable-disabled">
-                                        <a data-page="1" className="datatable-pagination-list-item-link">‹</a></li>
-                                    <li className="datatable-pagination-list-item datatable-active">
-                                        <a data-page="1" className="datatable-pagination-list-item-link">1</a>
-                                    </li>
-                                    <li className="datatable-pagination-list-item">
-                                        <a data-page="2" className="datatable-pagination-list-item-link">2</a>
-                                    </li>
-                                    <li className="datatable-pagination-list-item">
-                                        <a data-page="3" className="datatable-pagination-list-item-link">3</a>
-                                    </li>
-                                    <li className="datatable-pagination-list-item">
-                                        <a data-page="4" className="datatable-pagination-list-item-link">4</a>
-                                    </li>
-                                    <li className="datatable-pagination-list-item">
-                                        <a data-page="5" className="datatable-pagination-list-item-link">5</a>
-                                    </li>
-                                    <li className="datatable-pagination-list-item">
-                                        <a data-page="6" className="datatable-pagination-list-item-link">6</a>
-                                    </li>
-                                    <li className="datatable-pagination-list-item">
-                                        <a data-page="2" className="datatable-pagination-list-item-link">›</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <div className="datatable-info">{`Showing ${pageSize * (curPage - 1) + 1} to ${pageSize * curPage} of ${totalItems} entries`}</div>
+                            <Pagination onPageChanged={curPageChange} totalRecords={totalItems} pageSize={pageSize} pageLimit={5} />
                         </div>
                     </div>
                 </div>
