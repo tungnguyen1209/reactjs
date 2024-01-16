@@ -1,7 +1,10 @@
-import {api} from '../helpers';
+import {api, IPagination} from '../helpers';
+import {ICustomer} from "../store/customer/types";
 
-const getCustomers = async () => {
-    return await api.get('/admin/customer').then((response: any) => {
+const getCustomers = async (curPage: number, pageSize: number) => {
+    return await api.get<IPagination<ICustomer>>(
+        `/admin/customer?pageSize=${pageSize}&curPage=${curPage}`
+    ).then((response: any) => {
         return response.data;
     });
 };

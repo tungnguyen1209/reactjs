@@ -26,7 +26,6 @@ interface LoginSuccess {
     type: typeof LOGIN_SUCCESS;
     payload: {
         token: string;
-        refreshToken: string;
     };
 }
 
@@ -64,7 +63,6 @@ export interface AccountState {
     loading: boolean | false;
     error: string | null;
     token: string | null;
-    refreshToken: string | null;
 }
 
 export type AccountActionTypes =

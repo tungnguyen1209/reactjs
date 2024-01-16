@@ -219,26 +219,26 @@ function Dashboard() {
                                 <ul className="datatable-pagination-list">
                                     <li className="datatable-pagination-list-item datatable-hidden datatable-disabled">
                                         <a data-page="1" className="datatable-pagination-list-item-link">‹</a></li>
-                                    <li className="datatable-pagination-list-item datatable-active"><a data-page="1"
-                                                                                                       className="datatable-pagination-list-item-link">1</a>
+                                    <li className="datatable-pagination-list-item datatable-active">
+                                        <a data-page="1" className="datatable-pagination-list-item-link">1</a>
                                     </li>
-                                    <li className="datatable-pagination-list-item"><a data-page="2"
-                                                                                      className="datatable-pagination-list-item-link">2</a>
+                                    <li className="datatable-pagination-list-item">
+                                        <a data-page="2" className="datatable-pagination-list-item-link">2</a>
                                     </li>
-                                    <li className="datatable-pagination-list-item"><a data-page="3"
-                                                                                      className="datatable-pagination-list-item-link">3</a>
+                                    <li className="datatable-pagination-list-item">
+                                        <a data-page="3" className="datatable-pagination-list-item-link">3</a>
                                     </li>
-                                    <li className="datatable-pagination-list-item"><a data-page="4"
-                                                                                      className="datatable-pagination-list-item-link">4</a>
+                                    <li className="datatable-pagination-list-item">
+                                        <a data-page="4" className="datatable-pagination-list-item-link">4</a>
                                     </li>
-                                    <li className="datatable-pagination-list-item"><a data-page="5"
-                                                                                      className="datatable-pagination-list-item-link">5</a>
+                                    <li className="datatable-pagination-list-item">
+                                        <a data-page="5" className="datatable-pagination-list-item-link">5</a>
                                     </li>
-                                    <li className="datatable-pagination-list-item"><a data-page="6"
-                                                                                      className="datatable-pagination-list-item-link">6</a>
+                                    <li className="datatable-pagination-list-item">
+                                        <a data-page="6" className="datatable-pagination-list-item-link">6</a>
                                     </li>
-                                    <li className="datatable-pagination-list-item"><a data-page="2"
-                                                                                      className="datatable-pagination-list-item-link">›</a>
+                                    <li className="datatable-pagination-list-item">
+                                        <a data-page="2" className="datatable-pagination-list-item-link">›</a>
                                     </li>
                                 </ul>
                             </nav>

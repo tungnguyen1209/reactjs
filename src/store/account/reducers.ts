@@ -12,7 +12,6 @@ const initialState: AccountState = {
     loading: false,
     error: null,
     token: null,
-    refreshToken: null,
 };
 const accountReducer = (
     state: AccountState = initialState,
@@ -27,7 +26,6 @@ const accountReducer = (
                 ...state,
                 loading: false,
                 error: null,
-                refreshToken: action.payload.refreshToken,
                 token: action.payload.token,
             };
         }
@@ -36,7 +34,6 @@ const accountReducer = (
                 ...state,
                 loading: false,
                 token: null,
-                refreshToken: null,
                 error: action.payload.error,
             };
         }

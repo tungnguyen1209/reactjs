@@ -26,7 +26,9 @@ export const login = (email: string, password: string) => {
             const response = await userService.login(email, password);
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: response,
+                payload: {
+                    token: response.data.access_token
+                }
             });
         } catch (error: any) {
             dispatch({
